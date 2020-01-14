@@ -5,10 +5,16 @@ const router = express.Router()
 const formidable = require('formidable')
 const mv = require('mv')
 const gm = require('gm');
+const fs = require('fs')
 
 
 const pdf = {}
 var filePath, fileName, fileTitle, fileCategory
+const savedFile = fs.readFileSync("./public/json/pdfstore.json", 'utf8')
+const pdfLog = JSON.parse(savedFile);
+console.log(pdfLog)
+
+
 
 router.get('/', function (req, res) {
     res.sendFile(__dirname + '/index.html')
@@ -24,9 +30,10 @@ router.post('/fileupload', function (req, res) {
         pdf.pdfName = files.filetoupload.name
         filePath = newPath
         fileName = files.filetoupload.name
-        getImage()
         mv(oldPath, newPath, function (err) {
             if (err) throw err;
+            console.log('File uploaded successfully.')
+            setTimeout(getImage, 100)
             res.redirect('/');
             res.end();
         });
@@ -34,19 +41,26 @@ router.post('/fileupload', function (req, res) {
 })
 
 function getImage() {
-    console.log('Working')
+    console.log('Generating image. This may take some time depending on the file uploaded.')
     gm(pdf.pdfPath)
         .write('./public/images/' + pdf.pdfName + '.png', function (err) {
             if (err) console.log('aaw, shucks' + err);
-            console.log('Image written to directory.')
-            writeJSON()
+            console.log('Image successfully written to directory.')
+            loadObject()
         });
+}
 
-    console.log(pdf)
+function loadObject() {
+    console.log(typeof pdfLog)
+    var pdfDetails = { "filePath": filePath, "fileName": fileName }
+    pdfLog.push(pdfDetails)
+    console.log('Object information loaded: ' + pdfLog)
+    setTimeout(writeJSON, 100)
 }
 
 function writeJSON() {
-    console.log("I don't do anything")
+    fs.writeFileSync("./public/json/pdfstore.json", JSON.stringify(pdfLog));
+    console.log('Information saved')
 }
 
 module.exports = router
