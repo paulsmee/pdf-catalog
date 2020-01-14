@@ -23,7 +23,7 @@ router.post('/fileupload', function (req, res) {
         var oldpath = files.filetoupload.path;
         var newpath = './public/pdf/' + files.filetoupload.name;
         pdf.pdfstats = newpath
-        pdf.pdfname = files.filetoupload.name
+        pdf.pdfname = "title"[files.filetoupload.name]
         getImage()
         mv(oldpath, newpath, function (err) {
             if (err) throw err;
