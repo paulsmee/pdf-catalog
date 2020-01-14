@@ -10,6 +10,7 @@ const parse = require('node-html-parser').parse;
 
 
 const pdf = {}
+var filePath, fileName, fileTitle, fileAuthor
 
 router.get('/', function (req, res) {
     res.sendFile(__dirname + '/index.html')
@@ -23,7 +24,7 @@ router.post('/fileupload', function (req, res) {
         var oldpath = files.filetoupload.path;
         var newpath = './public/pdf/' + files.filetoupload.name;
         pdf.pdfstats = newpath
-        pdf.pdfname = "title"[files.filetoupload.name]
+        pdf.pdfname = files.filetoupload.name
         getImage()
         mv(oldpath, newpath, function (err) {
             if (err) throw err;
@@ -37,10 +38,11 @@ function getImage() {
     console.log('Working')
     gm(pdf.pdfstats)
         // var 
-        .write(pdf.pdfname + '.png', function (err) {
+        .write('./public/images/' pdf.pdfname + '.png', function (err) {
             if (err) console.log('aaw, shucks' + err);
             console.log('this worked!')
         });
+    console.log(pdf)
 }
 
 

@@ -1,0 +1,27 @@
+-=Project Overview=-
+
+The aim of this project is to create a web app that will allow the user to upload and catalog PDF files. It's far to easy to accumulate hundreds of them and with no easy way to keeps tabs on what is what.
+
+-=Things to Do=-
+
+- Upload PDF to PDF folder
+- After PDF uploaded create image of first page and save to images folder
+- Save filename, filepath, title, category(dropdown) to JSON - from user field input and automated input
+- Search function to look at 'title' and 'category' only - for now
+- Can EJS read JSON and display data accordingly? i.e each time a PDF is added a new element is added to show it's cover and link otherwise will need to work out how to dynamically add each item.
+
+
+-=Functionality=-
+
+File Upload: Working
+Create Cover Image: Working
+Write Data to JSON: TBC
+Search Function Backend: Partially Completed
+Search Function Frontend: TBC
+Responsive and Reactive Gallery: TBC
+UI/UX: TBC
+
+-=Future Functionality=-
+
+* Upload an image to use as cover
+* Bulk upload and catalog
