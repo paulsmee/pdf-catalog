@@ -5,8 +5,6 @@ const router = express.Router()
 const formidable = require('formidable')
 const mv = require('mv')
 const gm = require('gm');
-const fs = require('fs');
-const parse = require('node-html-parser').parse;
 
 
 const pdf = {}
@@ -21,12 +19,14 @@ router.post('/fileupload', function (req, res) {
     console.log('Attempting FileUpload')
     var form = new formidable.IncomingForm();
     form.parse(req, function (err, fields, files) {
-        var oldpath = files.filetoupload.path;
-        var newpath = './public/pdf/' + files.filetoupload.name;
-        pdf.pdfstats = newpath
-        pdf.pdfname = files.filetoupload.name
+        var oldPath = files.fileToUpload.path;
+        var newPath = './public/pdf/' + files.fileToUpload.name;
+        pdf.pdfPath = newPath
+        pdf.pdfName = files.fileToUpload.name
+        filePath = newPath
+        fileName = files.fileToUpload.name
         getImage()
-        mv(oldpath, newpath, function (err) {
+        mv(oldPath, newPath, function (err) {
             if (err) throw err;
             res.redirect('/');
             res.end();
@@ -36,28 +36,13 @@ router.post('/fileupload', function (req, res) {
 
 function getImage() {
     console.log('Working')
-    gm(pdf.pdfstats)
-        // var 
-        .write('./public/images/' pdf.pdfname + '.png', function (err) {
+    gm(pdf.pdfPath)
+        .write('./public/images/' + pdf.pdfName + '.png', function (err) {
             if (err) console.log('aaw, shucks' + err);
-            console.log('this worked!')
+            console.log('Image written to directory.')
         });
+
     console.log(pdf)
 }
-
-
-fs.readFile('index.html', 'utf8', (err, html) => {
-    if (err) {
-        throw err;
-    }
-
-    const root = parse(html);
-
-    const body = root.querySelector('body');
-    body.set_content('<div id = "asdf"></div>');
-    body.appendChild('<div id="uploadPDF">This Works?</div>');
-
-    console.log(root.toString()); // This you can write back to file!
-});
 
 module.exports = router
