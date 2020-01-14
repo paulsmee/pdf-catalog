@@ -8,23 +8,22 @@ const gm = require('gm');
 
 
 const pdf = {}
-var filePath, fileName, fileTitle, fileAuthor
+var filePath, fileName, fileTitle, fileCategory
 
 router.get('/', function (req, res) {
     res.sendFile(__dirname + '/index.html')
-    console.log("Access Detected!")
 });
 
 router.post('/fileupload', function (req, res) {
     console.log('Attempting FileUpload')
     var form = new formidable.IncomingForm();
     form.parse(req, function (err, fields, files) {
-        var oldPath = files.fileToUpload.path;
-        var newPath = './public/pdf/' + files.fileToUpload.name;
+        var oldPath = files.filetoupload.path;
+        var newPath = './public/pdf/' + files.filetoupload.name;
         pdf.pdfPath = newPath
-        pdf.pdfName = files.fileToUpload.name
+        pdf.pdfName = files.filetoupload.name
         filePath = newPath
-        fileName = files.fileToUpload.name
+        fileName = files.filetoupload.name
         getImage()
         mv(oldPath, newPath, function (err) {
             if (err) throw err;
@@ -40,9 +39,14 @@ function getImage() {
         .write('./public/images/' + pdf.pdfName + '.png', function (err) {
             if (err) console.log('aaw, shucks' + err);
             console.log('Image written to directory.')
+            writeJSON()
         });
 
     console.log(pdf)
+}
+
+function writeJSON() {
+    console.log("I don't do anything")
 }
 
 module.exports = router

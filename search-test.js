@@ -1,53 +1,36 @@
 'use-strict'
 
-const fs = require('fs');
 const Fuse = require('fuse.js');
-
-const pdfListing = {}
-var pdfArray = []
-
-//passsing directoryPath and callback function
-fs.readdir('./public/pdf/', function (err, files) {
-    if (err) {
-        return console.log('Directory not accessable: ' + err);
-    }
-    pdfListing["pdflist"] = files
-});
-
-function arrayme() {
-    pdfArray["title"] = pdfListing
-    // console.log(pdfArray)
-    books.push(book)
-}
 
 var result
 
-var list = ['Deck of Many Things.pdf',
-    'IMG_2909.jpg',
-    'IMG_3794.JPG',
-    'IMG_5073.JPG',
-    'IMG_5073e.jpg']
-
+// Test Objects
 var books = [{
     'ISBN': 'A',
     'title': "Old Man's War",
-    'author': 'John Scalzi'
+    'catalog': 'John Scalzi'
 }, {
     'ISBN': 'B',
     'title': 'The Lock Artist',
-    'author': 'Steve Hamilton'
+    'catalog': 'Steve Hamilton'
 }]
 
 var book = {
     'ISBN': 'C',
     'title': "Every is a Hammer",
-    'author': 'Adam Savage'
+    'catalog': 'Adam Savage'
 }
 
-setTimeout(arrayme, 100)
+// Test push object into array
+function pushIt() {
+    books.push(book)
+}
+setTimeout(pushIt, 100)
 
+
+// Search Function using fuse.js (I don't think I need this many options)
 function search() {
-    console.log('Running Search...')
+    console.log('Searching...')
     var options = {
         shouldSort: true,
         includeScore: true,
@@ -58,22 +41,19 @@ function search() {
         maxPatternLength: 32,
         minMatchCharLength: 1,
         keys: [
-            "title"
+            "title",
+            "catalog"
         ]
     };
-    var fuse = new Fuse(books, options); // "list" is the item array
-    result = fuse.search("mer");
+    var fuse = new Fuse(books, options);
+    result = fuse.search("sav"); // Point user search input here!
 
 }
 setTimeout(search, 1000)
 
-
-
-
-function blah() {
+function whatResults() {
     console.log(result)
-    // console.log(books)
 }
-setTimeout(blah, 2000)
+setTimeout(whatResults, 2000)
 
-module.exports = pdfArray
+module.exports = result
