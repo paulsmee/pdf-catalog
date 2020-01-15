@@ -8,6 +8,8 @@
 var express = require('express')
 var server = express()
 
+server.set('view engine', 'ejs');
+
 server.use(express.static('public'))
 // Connect our router function from router.js (the module we exported at the bottom).
 server.use(require('./router'))

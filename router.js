@@ -8,26 +8,22 @@ const gm = require('gm');
 const fs = require('fs')
 
 
-const pdf = {}
 var filePath, fileName, fileTitle, fileCategory
 const savedFile = fs.readFileSync("./public/json/pdfstore.json", 'utf8')
 const pdfLog = JSON.parse(savedFile);
-console.log(pdfLog)
-
-
 
 router.get('/', function (req, res) {
-    res.sendFile(__dirname + '/index.html')
+    res.render('index.ejs', { pdfLog: pdfLog });
 });
 
+// All the following controls the complete file upload functionality for the site. This has been done in function after function
+// calling to the next function to assist with ease of coding for myself. - say function one more time
 router.post('/fileupload', function (req, res) {
     console.log('Attempting FileUpload')
     var form = new formidable.IncomingForm();
     form.parse(req, function (err, fields, files) {
         var oldPath = files.filetoupload.path;
         var newPath = './public/pdf/' + files.filetoupload.name;
-        pdf.pdfPath = newPath
-        pdf.pdfName = files.filetoupload.name
         filePath = newPath
         fileName = files.filetoupload.name
         mv(oldPath, newPath, function (err) {
@@ -42,8 +38,8 @@ router.post('/fileupload', function (req, res) {
 
 function getImage() {
     console.log('Generating image. This may take some time depending on the file uploaded.')
-    gm(pdf.pdfPath)
-        .write('./public/images/' + pdf.pdfName + '.png', function (err) {
+    gm(filePath)
+        .write('./public/images/' + fileName + '.png', function (err) {
             if (err) console.log('aaw, shucks' + err);
             console.log('Image successfully written to directory.')
             loadObject()
