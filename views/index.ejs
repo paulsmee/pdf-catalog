@@ -14,17 +14,11 @@
         <input type="submit">
     </form>
 
-    <div class="gallery">
-        <div id="uploadPDF">
-            This is broken
-        </div>
-    </div>
-
     <ul>
         <% pdfLog.forEach(function(dat) { %>
-        <li><%= dat.name %></li>
-        <li><%= dat.image%></li>
-        <li><%= dat.description%></li>
+        <a href="<%= dat.filePath %>"> <img src="<%= dat.imagePath %>" /></a>
+        <li><%= dat.fileName%></li>
+        <!-- <li><%= dat.description%></li> -->
         <% }); %>
     </ul>
 </body>
