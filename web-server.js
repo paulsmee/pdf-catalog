@@ -7,8 +7,11 @@
 // This loads the 'express' package so we can use the functions within it.
 var express = require('express')
 var server = express()
+var bodyParser = require('body-parser')
 
 server.set('view engine', 'ejs');
+
+server.use(bodyParser.urlencoded({ extended: false }));
 
 server.use(express.static('public'))
 // Connect our router function from router.js (the module we exported at the bottom).

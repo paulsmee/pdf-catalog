@@ -8,12 +8,17 @@ const gm = require('gm');
 const fs = require('fs')
 
 
-var imagePath, filePath, fileName, fileTitle, fileCategory, getLocalPath
+var imagePath, filePath, fileName, fileTitle, fileCategory, getLocalPath, pictureId
 const savedFile = fs.readFileSync("./public/json/pdfstore.json", 'utf8')
 const pdfLog = JSON.parse(savedFile);
 
 router.get('/', function (req, res) {
     res.render('index.ejs', { pdfLog: pdfLog });
+});
+
+router.post('/path', (req, res, next) => {
+    fileTitle = req.body.fileTitleInput, console.log('Variable input working' + fileTitle),
+        res.redirect('/');
 });
 
 // All the following controls the complete file upload functionality for the site. This has been done in function after function
@@ -30,6 +35,7 @@ router.post('/fileupload', function (req, res) {
         mv(oldPath, newPath, function (err) {
             if (err) throw err;
             console.log('File uploaded successfully.')
+            console.log(fileTitle)
             setTimeout(getImage, 100)
             res.redirect('/');
             res.end();
@@ -42,7 +48,7 @@ function getImage() {
     gm(getLocalPath)
         .write('./public/images/' + fileName + '.png', function (err) {
             if (err) console.log('aaw, shucks' + err);
-            // imagePath = '/images/' + fileName + '.png'
+            imagePath = '/images/' + fileName + '.png'
             console.log('Image successfully written to directory.')
             loadObject()
         });
