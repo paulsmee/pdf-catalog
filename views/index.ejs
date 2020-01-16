@@ -1,37 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel='stylesheet' href='/css/style.css' />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="/css/style.css" />
     <title>PDF Catalog</title>
-</head>
+  </head>
 
-<body>
-    <form action="fileupload" method="post" enctype="multipart/form-data">
-        <input id="name" type="file" name="filetoupload"><br>
-        <input type="submit">
-    </form>
-    <form action="/path" method="post">
-        <label>Title:</label>
-        <input type="text" value="" name="fileTitleInput">
-        <input type="submit">
-    </form>
+  <body>
+    <!-- Start Header Container -->
+    <header>
+      <div class="navbar">
+        <!-- Logo -->
+        <img src="/images/logo.png" />
 
-    <% pdfLog.forEach(function(dat) { %>
-    <div class="row">
-        <div class="column">
-            <div class="card">
-                <img src="<%= dat.imagePath %>" style="width:100%">
-                <div class="container">
-                    <h2><%= dat.fileName%></h2>
-                    <p><button class="button" onclick="window.location.href ='<%= dat.filePath %>';">Open</button></p>
-                </div>
-            </div>
+        <!-- Appearance of hamburger to toggle menu on small screens -->
+        <div class="hamburger-box">
+          <input type="checkbox" class="toggle" onclick="removeElement()" />
+          <div class="bar1"></div>
+          <div class="bar2"></div>
+          <div class="bar3"></div>
         </div>
-        <% }); %>
-</body>
 
+        <!-- Main menu, hidden by default on small s -->
+        <div class="navbar-categories" id="myNavbar">
+          <a class="btn1" href="#home">Home</a>
+          <a class="btn1" href="#contact">Contact</a>
+          <div class="dropdown btn1">
+            Categories
+            <div class="dropdown-content">
+              <a href="#" onclick="showbuild()">Build</a>
+              <a href="#" onclick="showScience()">Science</a>
+              <a href="#">User Manuals</a>
+            </div>
+          </div>
+          <a class="btn1" href="#about">About</a>
+        </div>
+      </div>
+      <form action="fileupload" method="post" enctype="multipart/form-data">
+        <input id="name" type="file" name="filetoupload" /><br />
+        <input type="submit" />
+      </form>
+      <form action="/path" method="post">
+        <label>Title:</label>
+        <input type="text" value="" name="fileTitleInput" />
+        <input type="submit" />
+      </form>
+    </header>
+
+    <div class="row">
+      <% pdfLog.forEach(function(dat) { %>
+      <div class="column">
+        <div class="card">
+          <div class="container">
+            <img src="<%= dat.imagePath %>" style="width:100%" />
+            <h2><%= dat.fileName%></h2>
+            <p>
+              <button
+                class="button"
+                onclick="window.location.href ='<%= dat.filePath %>';"
+              >
+                Open
+              </button>
+            </p>
+          </div>
+        </div>
+      </div>
+      <% }); %>
+    </div>
+  </body>
 </html>

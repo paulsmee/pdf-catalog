@@ -15,10 +15,10 @@ The aim of this project is to create a web app that will allow the user to uploa
 
 File Upload: Working
 Create Cover Image: Working
-Write Data to JSON: TBC
+Write Data to JSON: Working
 Search Function Backend: Partially Completed
 Search Function Frontend: TBC
-Responsive and Reactive Gallery: TBC
+Responsive and Reactive Gallery: Partially Completed
 UI/UX: TBC
 
 -=Future Functionality=-
