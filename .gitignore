@@ -1,4 +1,4 @@
 node_modules
-public/json
+# public/json
 public/images
 public/pdf
