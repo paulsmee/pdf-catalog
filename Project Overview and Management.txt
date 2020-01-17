@@ -18,8 +18,8 @@ Create Cover Image: Working
 Write Data to JSON: Working
 Search Function Backend: Partially Completed
 Search Function Frontend: TBC
-Responsive and Reactive Gallery: Partially Completed
-UI/UX: TBC
+Responsive and Reactive Gallery: Working
+Improve UI/UX: TBC
 
 -=Future Functionality=-
 
