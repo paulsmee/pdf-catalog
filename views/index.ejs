@@ -30,23 +30,27 @@
           <div class="dropdown btn1">
             Categories
             <div class="dropdown-content">
-              <a href="#" onclick="showbuild()">Build</a>
-              <a href="#" onclick="showScience()">Science</a>
-              <a href="#">User Manuals</a>
+              <form
+                action="fileupload"
+                method="post"
+                enctype="multipart/form-data"
+                charset="UTF-8"
+              >
+                <input id="name" type="file" name="filetoupload" /><br />
+                <label>Title:</label>
+                <input type="text" value="" name="fileTitleInput" />
+                <input type="submit" />
+              </form>
+              <!-- <form action="/path" method="post">
+                <label>Title:</label>
+                <input type="text" value="" name="fileTitleInput" />
+                <input type="submit" />
+              </form> -->
             </div>
           </div>
           <a class="btn1" href="#about">About</a>
         </div>
       </div>
-      <form action="fileupload" method="post" enctype="multipart/form-data">
-        <input id="name" type="file" name="filetoupload" /><br />
-        <input type="submit" />
-      </form>
-      <form action="/path" method="post">
-        <label>Title:</label>
-        <input type="text" value="" name="fileTitleInput" />
-        <input type="submit" />
-      </form>
     </header>
 
     <div class="row">
@@ -55,7 +59,7 @@
         <div class="card">
           <div class="container">
             <img src="<%= dat.imagePath %>" style="width:100%" />
-            <h2><%= dat.fileName%></h2>
+            <h2><%= dat.fileTitle%></h2>
             <p>
               <button
                 class="button"
