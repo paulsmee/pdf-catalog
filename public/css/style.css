@@ -146,6 +146,7 @@ body {
   float: left;
   display: inline-table;
   width: 20%;
+  max-height: inherit;
   margin-bottom: 16px;
   padding: 8px 8px;
 }
@@ -153,6 +154,13 @@ body {
 /* Add some shadows to create a card effect */
 .card {
   box-shadow: 0 4px 8px 0 #233d4a;
+  height: 350px;
+  overflow: x;
+}
+
+h2 {
+  font-size: 1em;
+  text-align: center;
 }
 
 /* Some left and right padding inside the container */
@@ -162,6 +170,11 @@ body {
 
 .container img {
   padding: 8px 0px 0px 0px;
+  max-height: 235px;
+  max-width: 175px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
 }
 
 /* Clear floats */
