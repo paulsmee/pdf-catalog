@@ -17,7 +17,7 @@
 
         <!-- Appearance of hamburger to toggle menu on small screens -->
         <div class="hamburger-box">
-          <input type="checkbox" class="toggle" onclick="removeElement()" />
+          <input type="checkbox" class="toggle" onclick=" showHide()" />
           <div class="bar1"></div>
           <div class="bar2"></div>
           <div class="bar3"></div>
@@ -25,10 +25,10 @@
 
         <!-- Main menu, hidden by default on small s -->
         <div class="navbar-categories" id="myNavbar">
-          <a class="btn1" href="#home">Home</a>
-          <a class="btn1" href="#contact">Contact</a>
-          <div class="dropdown btn1">
-            Categories
+          <a class="lnkbtn" href="#home">Home</a>
+          <a class="lnkbtn" href="#contact">Contact</a>
+          <div class="dropdown lnkbtn">
+            Upload
             <div class="dropdown-content">
               <form
                 action="fileupload"
@@ -36,19 +36,29 @@
                 enctype="multipart/form-data"
                 charset="UTF-8"
               >
-                <input id="name" type="file" name="filetoupload" /><br />
+                <input
+                  id="name"
+                  type="file"
+                  accept=".pdf"
+                  name="filetoupload"
+                /><br />
                 <label>Title:</label>
                 <input type="text" value="" name="fileTitleInput" />
                 <input type="submit" />
               </form>
-              <!-- <form action="/path" method="post">
-                <label>Title:</label>
-                <input type="text" value="" name="fileTitleInput" />
-                <input type="submit" />
-              </form> -->
             </div>
           </div>
-          <a class="btn1" href="#about">About</a>
+          <a class="lnkbtn" href="#about">
+            <form action="search" method="post">
+              Search
+              <input
+                id="search"
+                type="text"
+                name="search"
+                placeholder="Find documents..."
+              />
+            </form>
+          </a>
         </div>
       </div>
     </header>
@@ -73,5 +83,15 @@
       </div>
       <% }); %>
     </div>
+    <script>
+      function showHide() {
+        var x = document.getElementById('myNavbar');
+        if (x.className === 'navbar-categories') {
+          x.className += ' showHide';
+        } else {
+          x.className = 'navbar-categories';
+        }
+      }
+    </script>
   </body>
 </html>

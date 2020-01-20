@@ -70,7 +70,7 @@ body {
 
 /* Style the navbar links */
 
-.navbar .btn1 {
+.navbar .lnkbtn {
   float: left;
   color: #233d4a;
   text-align: center;
@@ -83,7 +83,6 @@ body {
 }
 
 /* Style the active class, and buttons on mouse-over */
-
 .navbar-categories a:hover,
 .navbar-categories a:active {
   background-color: #233d4a;
@@ -136,7 +135,7 @@ body {
   color: white;
 }
 
-/* Three columns side by side */
+/* Card display details for book covers */
 
 .row {
   width: 100%;
@@ -151,11 +150,10 @@ body {
   padding: 8px 8px;
 }
 
-/* Add some shadows to create a card effect */
 .card {
   box-shadow: 0 4px 8px 0 #233d4a;
   height: 350px;
-  overflow: x;
+  overflow: hidden;
 }
 
 h2 {
@@ -163,7 +161,6 @@ h2 {
   text-align: center;
 }
 
-/* Some left and right padding inside the container */
 .container {
   padding: 0 16px;
 }
@@ -177,7 +174,6 @@ h2 {
   display: block;
 }
 
-/* Clear floats */
 .container::after,
 .row::after {
   content: '';
@@ -205,8 +201,8 @@ h2 {
   background-color: #555;
 }
 
-/* Display the columns below each other instead of side by side on small screens */
-@media screen and (max-width: 650px) {
+/* Modify the displays for various screen sizes */
+@media screen and (max-width: 900px) {
   .navbar a {
     float: none;
     display: block;
@@ -230,18 +226,134 @@ h2 {
     display: inline-block;
     background-color: #6da6c4;
     min-width: 160px;
-    /* z-index: 1; */
     overflow: auto;
   }
 
   .column {
-    width: 100%;
+    width: 33.33%;
+    display: inline-table;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .navbar a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+  .hamburger-box {
+    display: block;
+    float: right;
+  }
+  .hamburger-box:hover .navbar-categories {
+    display: inline-block;
+    position: relative;
+  }
+  .navbar-categories {
+    float: none;
+    display: none;
+  }
+
+  .navbar-categories.showHide {
+    position: relative;
+    display: inline-block;
+    background-color: #6da6c4;
+    min-width: 160px;
+    overflow: auto;
+  }
+
+  .column {
+    width: 50%;
     display: block;
   }
 }
 
-/* @media screen and (min-width: 601px) {
-    .navbar-categories {
-        display: block !important;
-    }
-  } */
+@media screen and (max-width: 350px) {
+  .navbar a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+  .hamburger-box {
+    display: block;
+    float: right;
+  }
+  .hamburger-box:hover .navbar-categories {
+    display: inline-block;
+    position: relative;
+  }
+  .navbar-categories {
+    float: none;
+    display: none;
+  }
+
+  .navbar-categories.showHide {
+    position: relative;
+    display: inline-block;
+    background-color: #6da6c4;
+    min-width: 160px;
+    overflow: auto;
+  }
+
+  .column {
+    width: 50%;
+    display: block;
+  }
+
+  .container img {
+    max-height: 250px;
+    max-width: 150px;
+  }
+
+  .card {
+    box-shadow: 0 4px 8px 0 #233d4a;
+    height: 300px;
+  }
+}
+
+/* Layout for 4k screens */
+@media screen and (min-width: 2400px) {
+  .navbar .lnkbtn {
+    font-size: 2em;
+  }
+
+  input {
+    font-size: 0.7em;
+  }
+
+  .column {
+    width: 16.66%;
+    display: block;
+  }
+
+  .container img {
+    max-height: 450px;
+    max-width: 330px;
+  }
+
+  .card {
+    box-shadow: 0 4px 8px 0 #233d4a;
+    height: 620px;
+  }
+
+  h2 {
+    font-size: 2em;
+    text-align: center;
+  }
+
+  .container {
+    padding: 0 16px;
+  }
+
+  .button {
+    border: none;
+    outline: 0;
+    display: inline-block;
+    padding: 8px;
+    color: white;
+    background-color: #000;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+  }
+}
