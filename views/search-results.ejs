@@ -88,16 +88,16 @@
     </form>
 
     <div class="row">
-      <% pdfLog.forEach(function(dat) { %>
+      <% searchResult.forEach(function(dat) { %>
       <div class="column">
         <div class="card">
           <div class="container">
-            <img src="<%= dat.imagePath %>" style="width:100%" />
-            <h2><%= dat.fileTitle%></h2>
+            <img src="<%= dat.item.imagePath %>" style="width:100%" />
+            <h2><%= dat.item.fileTitle%></h2>
             <p>
               <button
                 class="button"
-                onclick="window.location.href ='<%= dat.filePath %>';"
+                onclick='window.location.href ="<%= dat.item.filePath %>"'
               >
                 Open
               </button>

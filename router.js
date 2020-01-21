@@ -6,8 +6,13 @@ const formidable = require('formidable');
 const mv = require('mv');
 const gm = require('gm');
 const fs = require('fs');
+const Fuse = require('fuse.js');
+var bodyParser = require('body-parser');
 
+// upload related variables
 var imagePath, filePath, fileName, fileTitle, fileCategory, getLocalPath;
+// search related variables
+var searchResult, searchInput;
 
 const savedFile = fs.readFileSync('./public/json/pdfstore.json', 'utf8');
 const pdfLog = JSON.parse(savedFile);
@@ -67,6 +72,33 @@ router.post('/fileupload', function(req, res, next) {
       }
     });
   });
+});
+
+router.get('/search-results', function(req, res) {
+  res.render('search-results.ejs', { searchResult: searchResult });
+});
+
+router.post('/search', function(req, res, next) {
+  console.log('Searching...' + req.body.searchData);
+
+  var searchWords = req.body.searchData;
+
+  var options = {
+    shouldSort: true,
+    includeScore: true,
+    // includeMatches: false,
+    threshold: 0.2,
+    location: 0,
+    distance: 100,
+    maxPatternLength: 32,
+    minMatchCharLength: 1,
+    keys: ['fileTitle']
+  };
+  var fuse = new Fuse(pdfLog, options);
+  searchResult = fuse.search(searchWords);
+  console.log(searchResult);
+  res.redirect('/search-results');
+  res.end();
 });
 
 module.exports = router;
