@@ -55,37 +55,17 @@
               enctype="utf-8"
               charset="UTF-8"
             >
-              Search
               <input
                 type="text"
                 name="searchData"
                 placeholder="Find documents..."
               />
               <button>Search</button>
-              <!-- <script>
-                var ages = [32, 33, 12, 40];
-
-                function checkAdult(age) {
-                  return age >= document.getElementById('ageToCheck').value;
-                }
-
-                function myFunction() {
-                  document.getElementById('demo').innerHTML = ages.filter(
-                    checkAdult
-                  );
-                }
-              </script> -->
             </form>
           </a>
         </div>
       </div>
     </header>
-
-    <form action="/search" method="post" enctype="utf-8" charset="UTF-8">
-      Search
-      <input type="text" name="searchData" placeholder="Find documents..." />
-      <button>Search</button>
-    </form>
 
     <div class="row">
       <% searchResult.forEach(function(dat) { %>

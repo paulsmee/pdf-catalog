@@ -17,7 +17,8 @@ File Upload: Working
 Create Cover Image: Working
 Write Data to JSON: Working
 Search Function Backend: Partially Completed
-Search Function Frontend: TBC
+Search Function Frontend: Working
+Categories: TBC
 Responsive and Reactive Gallery: Working
 Improve UI/UX: TBC
 
