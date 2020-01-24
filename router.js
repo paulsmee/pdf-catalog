@@ -7,12 +7,11 @@ const mv = require('mv');
 const gm = require('gm');
 const fs = require('fs');
 const Fuse = require('fuse.js');
-var bodyParser = require('body-parser');
 
 // upload related variables
 var imagePath, filePath, fileName, fileTitle, fileCategory, getLocalPath;
 // search related variables
-var searchResult, searchInput;
+var searchResult;
 
 const savedFile = fs.readFileSync('./public/json/pdfstore.json', 'utf8');
 const pdfLog = JSON.parse(savedFile);
@@ -33,6 +32,7 @@ router.post('/fileupload', function(req, res, next) {
     filePath = '/pdf/' + files.filetoupload.name;
     fileName = files.filetoupload.name;
     fileTitle = fields.fileTitleInput;
+    fileCategory = fields.category;
     mv(oldPath, newPath, function(err) {
       if (err) throw err;
       console.log('File uploaded successfully.');
@@ -53,10 +53,11 @@ router.post('/fileupload', function(req, res, next) {
               filePath: filePath,
               fileName: fileName,
               imagePath: imagePath,
-              fileTitle: fileTitle
+              fileTitle: fileTitle,
+              fileCategory: fileCategory
             };
             pdfLog.push(pdfDetails);
-            console.log('Object information loaded.');
+            console.log('Object information loaded.' + pdfDetails);
             setTimeout(writeJSON, 100);
             function writeJSON() {
               fs.writeFileSync(
@@ -99,6 +100,16 @@ router.post('/search', function(req, res, next) {
   console.log(searchResult);
   res.redirect('/search-results');
   res.end();
+});
+
+router.get('/category-select', function(req, res) {
+  res.render('index.ejs', { searchResult: searchResult });
+  var category = fileCategory;
+  var filteredArray = pdfLog.category.filter(function(itm) {
+    return empIds.indexOf(itm.empid) > -1;
+  });
+
+  filteredArray = { records: filteredArray };
 });
 
 module.exports = router;

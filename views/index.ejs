@@ -26,10 +26,40 @@
         <!-- Main menu, hidden by default on small s -->
         <div class="navbar-categories" id="myNavbar">
           <a class="lnkbtn" href="/">Home</a>
-          <a class="lnkbtn" href="#contact">Contact</a>
-          <div class="dropdown lnkbtn">
-            Upload
-            <div class="dropdown-content">
+          <a class="lnkbtn" onclick="openCategory()">Category</a>
+          <div id="screenOverlayC" class="overlay">
+            <a class="closebtn" onclick="closeCategory()" title="Close Overlay"
+              >x</a
+            >
+            <div class="overlay-content">
+              <form
+                action="category-select"
+                method="post"
+                enctype="multipart/form-data"
+                charset="UTF-8"
+              >
+                <select id="categories" name="category">
+                  <option value="blank">-- Please Select --</option>
+                  <option value="reference">Reference</option>
+                  <option value="science">Science</option>
+                  <option value="fantasy">Fantasy</option>
+                  <option value="computers">Computers</option>
+                  <option value="repair">Repair Manuals</option>
+                  <option value="fiction">Fiction</option>
+                </select>
+                <input class="hidden" id="submitForm" type="submit" />Submit
+                <label for="submitForm" id="submitForm">Submit</label>
+              </form>
+            </div>
+          </div>
+
+          <a class="lnkbtn" onclick="openUpload()">Upload</a>
+
+          <div id="screenOverlayU" class="overlay">
+            <a class="closebtn" onclick="closeUpload()" title="Close Overlay"
+              >x</a
+            >
+            <div class="overlay-content">
               <form
                 action="fileupload"
                 method="post"
@@ -37,14 +67,35 @@
                 charset="UTF-8"
               >
                 <input
-                  id="name"
+                  class="hidden"
+                  id="fileSelect"
+                  placeholder=" "
                   type="file"
                   accept=".pdf"
                   name="filetoupload"
-                /><br />
-                <label>Title:</label>
-                <input type="text" value="" name="fileTitleInput" />
-                <input type="submit" />
+                />
+                <label id="fileSelect" for="fileSelect">Select file</label>
+
+                <input
+                  type="text"
+                  value=""
+                  placeholder="Add Document Title ..."
+                  name="fileTitleInput"
+                  autocomplete="off"
+                  required
+                />
+                <select id="categories" name="category">
+                  <option value="blank">-- Please Select --</option>
+                  <option value="reference">Reference</option>
+                  <option value="science">Science</option>
+                  <option value="fantasy">Fantasy</option>
+                  <option value="computers">Computers</option>
+                  <option value="repair">Repair Manuals</option>
+                  <option value="fiction">Fiction</option>
+                </select>
+
+                <input class="hidden" id="submitForm" type="submit" />Submit
+                <label for="submitForm" id="submitForm">Submit</label>
               </form>
             </div>
           </div>
@@ -95,6 +146,24 @@
         } else {
           x.className = 'navbar-categories';
         }
+      }
+      // Open the full screen upload box
+      function openUpload() {
+        document.getElementById('screenOverlayU').style.display = 'block';
+      }
+
+      // Close the full screen upload box
+      function closeUpload() {
+        document.getElementById('screenOverlayU').style.display = 'none';
+      }
+      // Open the full screen category select box
+      function openCategory() {
+        document.getElementById('screenOverlayC').style.display = 'block';
+      }
+
+      // Close the full screen category select box
+      function closeCategory() {
+        document.getElementById('screenOverlayC').style.display = 'none';
       }
     </script>
   </body>

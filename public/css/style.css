@@ -10,8 +10,11 @@ body {
   background-color: #aabac2;
 }
 
-/* Style the navbar */
+.hidden {
+  display: none;
+}
 
+/* Style the navbar */
 .navbar {
   overflow: auto;
   background-color: #6da6c4;
@@ -68,8 +71,6 @@ body {
   transform: rotate(45deg) translate(-8px, -8px);
 }
 
-/* Style the navbar links */
-
 .navbar .lnkbtn {
   float: left;
   color: #233d4a;
@@ -82,14 +83,11 @@ body {
   border-radius: 4px;
 }
 
-/* Style the active class, and buttons on mouse-over */
 .navbar-categories a:hover,
 .navbar-categories a:active {
   background-color: #233d4a;
   color: white;
 }
-
-/* Float the link section to the right */
 
 .navbar-categories {
   float: right;
@@ -100,40 +98,87 @@ body {
   position: relative;
 }
 
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
+/* ///////////////////////////////////////////////////////////////////////////////////////////// */
 
-.dropdown-content {
+.overlay {
+  height: 100%;
+  width: 100%;
   display: none;
   position: fixed;
-  background-color: #555;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.9);
 }
 
-.dropdown-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  text-align: left;
-  display: block;
+.overlay-content {
+  position: relative;
+  top: 30%;
+  width: 40%;
+  display: flex;
+  margin: auto;
+  border: paleturquoise solid 2px;
+  padding: 8px 8px;
 }
 
-.dropdown-content a:hover {
-  background-color: #555;
-}
-
-.dropdown:hover .dropdown-content {
-  display: block;
-}
-
-.dropdown:hover {
-  background-color: #233d4a;
+.overlay .closebtn {
+  position: absolute;
+  top: 20px;
+  right: 45px;
+  font-size: 50px;
+  cursor: pointer;
   color: white;
 }
+
+.overlay .closebtn:hover {
+  color: #ccc;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.overlay input[type='text']:hover {
+  background: #f1f1f1;
+}
+
+/* button styling */
+.overlay #fileSelect,
+#category,
+#submitForm {
+  float: left;
+  width: 30%;
+  padding: 10px;
+  background: rgb(155, 166, 175);
+  font-size: 17px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-align: center;
+  margin: 4px 0;
+}
+
+.overlay button:hover {
+  background: #bbb;
+}
+
+/* Style inputs */
+input[type='text'],
+select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 4px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+/* Add a background color to the submit button on mouse-over */
+input[type='submit']:hover {
+  background-color: #45a049;
+}
+
+/* ///////////////////////////////////////////////////////////////////////////////////////////////// */
 
 /* Card display details for book covers */
 
